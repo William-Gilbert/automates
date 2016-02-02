@@ -37,7 +37,9 @@ public class Application {
         premier_sous_automate_de_root.etatCourant = premier_sous_automate_de_root.listEtat.get(0);
         premier_sous_automate_du_premier_filsEtat_de_root.etatCourant = premier_sous_automate_du_premier_filsEtat_de_root.listEtat.get(0);
         premier_sosu_automate_du_deuxieme_filsEtat_de_root.etatCourant = premier_sosu_automate_du_deuxieme_filsEtat_de_root.listEtat.get(0);
-        System.out.println(automate_contenant_root.toString());
+
+        String r = automate_contenant_root.toString();
+        System.out.print(r);
 
     }
 }
