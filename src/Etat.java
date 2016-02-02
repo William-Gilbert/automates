@@ -14,15 +14,18 @@ public class Etat {
         this.nom = nom;
         this.initial = initial;
         this.last = last;
+        sousAutomates = new ArrayList<Automate>();
     }
 
     public boolean ajouterSousAutomate(Automate a){
-        if(a == null){
-            return false;
+        return a != null &&  sousAutomates.add(a);
+    }
+
+    public String toString(){
+        String ts = nom;
+        for(Automate a :  sousAutomates){
+            nom+="." +a.etatCourant.toString()+"\n";
         }
-
-        // TODO Fonction
-
-        return true;
+        return ts;
     }
 }
