@@ -24,7 +24,7 @@ public class Etat {
     public String toString(){
         String ts = nom;
         for(Automate a :  sousAutomates){
-            nom+="." +a.etatCourant.toString()+"\n";
+            ts+="." +a.etatCourant.toString()+"\n";
         }
         return ts;
     }
