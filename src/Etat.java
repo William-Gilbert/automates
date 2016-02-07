@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 /**
  * Created by zoom3 on 02/02/2016.
- * Représente un état hierarchique d'un automate (qui peut contenir d'autre automate)
+ * Reprï¿½sente un ï¿½tat hierarchique d'un automate (qui peut contenir d'autre automate)
  */
-public class Etat {
+public class Etat implements Visiteur {
     public String nom;
     public boolean initial;
     public boolean last;
@@ -27,5 +27,25 @@ public class Etat {
             ts+="." +a.etatCourant.toString()+"\n";
         }
         return ts;
+    }
+
+    @Override
+    public Object visit(Automate A) {
+        return null;
+    }
+
+    @Override
+    public Object visit(Etat e) {
+        return null;
+    }
+
+    @Override
+    public Object visit(Transition t) {
+        return null;
+    }
+
+    @Override
+    public Object visit(Label l) {
+        return null;
     }
 }
