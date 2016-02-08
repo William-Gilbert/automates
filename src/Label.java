@@ -4,23 +4,9 @@
 public class Label implements Visiteur{
     public String etiquette;
 
-    @Override
-    public Object visit(Automate A) {
-        return null;
-    }
 
     @Override
-    public Object visit(Etat e) {
-        return null;
-    }
-
-    @Override
-    public Object visit(Transition t) {
-        return null;
-    }
-
-    @Override
-    public Object visit(Label l) {
+    public Object visit() {
         return null;
     }
 }
