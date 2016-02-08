@@ -8,6 +8,7 @@ public class Automate implements Visiteur {
     public ArrayList<Transition> listTransition;
     public Etat etatCourant;
 
+
     public Automate() {
         listEtat = new ArrayList<Etat>();
         listTransition = new ArrayList<Transition>();
