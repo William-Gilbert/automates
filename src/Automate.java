@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by zoom3 on 02/02/2016.
  */
-public class Automate implements Visiteur {
+public class Automate implements VisitAccept {
     public ArrayList<Etat> listEtat;
     public ArrayList<Transition> listTransition;
     public Etat etatCourant;
@@ -29,8 +29,7 @@ public class Automate implements Visiteur {
     }
 
 
+
     @Override
-    public Object visit() {
-        return null;
-    }
+    public Object accepter(Visiteur v){return v.visit(this);}
 }

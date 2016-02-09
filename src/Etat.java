@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Created by zoom3 on 02/02/2016.
  * Repr�sente un �tat hierarchique d'un automate (qui peut contenir d'autre automate)
  */
-public class Etat implements Visiteur {
+public class Etat implements VisitAccept{
     public String nom;
     public boolean initial;
     public boolean last;
@@ -28,10 +28,11 @@ public class Etat implements Visiteur {
         }
         return ts;
     }
+    public String getNom(){
+        return nom;
+    }
 
 
     @Override
-    public Object visit() {
-        return null;
-    }
+    public Object accepter(Visiteur v){return v.visit(this);}
 }

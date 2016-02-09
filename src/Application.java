@@ -13,7 +13,7 @@ public class Application {
 
         Etat root = new Etat("Root",true,false);
         Etat g1f1 = new Etat("g1f1",false,false);
-        Etat g1f2 = new Etat("g1f2",false,false);
+        Etat g1f2 = new Etat("g1f1",false,false);
         Etat g1f3 = new Etat("g1f3",false,true);
 
         Etat g2f1 = new Etat("g2f1",false,true);
@@ -40,6 +40,7 @@ public class Application {
 
         String r = automate_contenant_root.toString();
         System.out.print(r);
-
+        boolean b = (boolean) automate_contenant_root.accepter(new Interpreter());
+        System.out.print(b);
     }
 }

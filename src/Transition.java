@@ -1,7 +1,7 @@
 /**
  * Created by zoom3 on 02/02/2016.
  */
-public class Transition implements Visiteur{
+public class Transition{
     public Etat etatSource;
     public Etat etatCible;
     public Label etiquette;
@@ -12,9 +12,4 @@ public class Transition implements Visiteur{
         this.etiquette = etiquette;
     }
 
-
-    @Override
-    public Object visit() {
-        return null;
-    }
 }
