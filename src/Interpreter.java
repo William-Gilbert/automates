@@ -11,19 +11,24 @@ public class Interpreter implements Visiteur{
     public Object visit(Automate a) {
         for (Etat e : a.listEtat){
             for(Etat e2 : a.listEtat){
-                if(e!=e2 && ((String)visit(e)).equals(((String)visit(e2)))){//Cast peut-être inutile
+                if(e!=e2 && ((String)visit(e,"display")).equals(((String)visit(e2,"display")))){//Cast peut-être inutile
                     return false;
                 }
             }
             // Traiteemnt type d'objet
-            //for(Automate sa : e.sousAutomates){if(!visit(sa))return false;}
-            visit(e);
+            for(Automate sous_automates : e.sousAutomates){
+                if(!(boolean)visit(sous_automates))return false;
+            }
+            visit(e,"transition");
         }
         return true;
     }
 
     @Override
-    public Object visit(Etat e) {
+    public Object visit(Etat e, String cas) {
+        if(cas.equals("transition")){
+            // visit
+        }
         return e.getNom();
     }
 
