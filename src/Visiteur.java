@@ -5,7 +5,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
  */
 public interface Visiteur {
     Object visit(Automate a);
-    Object visit(Etat e);
+    Object visit(Etat e, String cas);
     Object visit(Transition t);
     Object visit(Label l);
 

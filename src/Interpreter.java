@@ -11,27 +11,24 @@ public class Interpreter implements Visiteur{
     public Object visit(Automate a) {
         for (Etat e : a.listEtat){
             for(Etat e2 : a.listEtat){
-                //affiche le déroulement des actions
-                //lorsqu'il voit true true il devrait retourner false mais il ne le fait pas
-                //et il ne parcours pas tout à chaque fois, il fait une vérification au lieu de de 3 par etat !
-                String s1=(String)visit(e);
-                String s2=(String)visit(e2);
-                System.out.println(s1+" "+s2);
-                System.out.print(e!=e2);
-                System.out.println(s1.equals(s2));
-                if(e!=e2 && s1.equals(s2)){
+                if(e!=e2 && ((String)visit(e,"display")).equals(((String)visit(e2,"display")))){//Cast peut-être inutile
                     return false;
                 }
             }
             // Traiteemnt type d'objet
-            for(Automate sa : e.sousAutomates){if(visit(sa)==null)return false;}
-            visit(e);
+            for(Automate sous_automates : e.sousAutomates){
+                if(!(boolean)visit(sous_automates))return false;
+            }
+            visit(e,"transition");
         }
         return true;
     }
 
     @Override
-    public Object visit(Etat e) {
+    public Object visit(Etat e, String cas) {
+        if(cas.equals("transition")){
+            // visit
+        }
         return e.getNom();
     }
 
