@@ -6,15 +6,17 @@ import java.util.ArrayList;
  */
 public class Etat implements VisitAccept{
     public String nom;
-    public boolean initial;
-    public boolean last;
+    public boolean isInitial;
+    public boolean isLast;
+    public Automate source;
     public ArrayList<Automate> sousAutomates;
 
-    public Etat(String nom, boolean initial, boolean last) {
+    public Etat(Automate source,String nom, boolean initial, boolean last) {
         this.nom = nom;
-        this.initial = initial;
-        this.last = last;
+        this.isInitial = initial;
+        this.isLast = last;
         sousAutomates = new ArrayList<Automate>();
+        this.source = source;
     }
 
     public boolean ajouterSousAutomate(Automate a){
@@ -34,5 +36,5 @@ public class Etat implements VisitAccept{
 
 
     @Override
-    public Object accepter(Visiteur v){return v.visit(this);}
+    public Object accepter(Visiteur v){return v.visit(this, "display");}
 }
