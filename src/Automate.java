@@ -7,12 +7,14 @@ public class Automate implements VisitAccept {
     public ArrayList<Etat> listEtat;
     public ArrayList<Transition> listTransition;
     public Etat etatCourant;
+    public String nom;
 
 
-    public Automate() {
+    public Automate(String nom) {
         listEtat = new ArrayList<Etat>();
         listTransition = new ArrayList<Transition>();
         etatCourant = null;
+        this.nom = nom;
     }
 
     public boolean ajouterEtat(Etat e) {
@@ -31,5 +33,5 @@ public class Automate implements VisitAccept {
 
 
     @Override
-    public Object accepter(Visiteur v){return v.visit(this);}
+    public Object accepter(Visiteur v){return v.visit(this, "validAut");}
 }
