@@ -12,7 +12,7 @@ public class Application {
         Etat root = new Etat(automate_contenant_root,"root",true,false);
         Etat root2 = new Etat(automate_contenant_root, "root2", false, true);
         Etat g1f1 = new Etat(premier_sous_automate_de_root,"g1f1",true,false);
-        Etat g1f2 = new Etat(premier_sous_automate_de_root,"g1f1",true,false);
+        Etat g1f2 = new Etat(premier_sous_automate_de_root,"g1f1",false,true);
         Etat g1f3 = new Etat(premier_sous_automate_de_root,"g1f3",false,true);
 
         Etat g2f1 = new Etat(premier_sous_automate_du_premier_filsEtat_de_root,"g2f1",true,true);
@@ -41,7 +41,8 @@ public class Application {
 
 
         premier_sous_automate_de_root.ajouterTransition(new Transition(g1f1,g1f2, new Label("a")));
-        premier_sous_automate_de_root.ajouterTransition(new Transition(g1f1,g1f3, new Label("a")));
+        premier_sous_automate_de_root.ajouterTransition(new Transition(g1f1,g1f3, new Label("b")));
+        automate_contenant_root.ajouterTransition(new Transition(root,root2, new Label("b")));
 
         String r = automate_contenant_root.toString();
         System.out.print(r);
