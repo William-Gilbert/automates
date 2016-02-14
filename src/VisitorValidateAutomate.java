@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -41,7 +42,6 @@ public class VisitorValidateAutomate implements Visiteur{
             }
             return retour;
         }
-
         if(cas.equals("target_of_transition")){
             boolean retour = true;
             for(Etat myStates : a.listEtat){
@@ -57,17 +57,41 @@ public class VisitorValidateAutomate implements Visiteur{
             }
             return retour;
         }
+        if (cas.equals("puits")){
+            boolean retour = true;
+            ArrayList<Etat> sources = new ArrayList<Etat>(a.listTransition.size());
+            for(Etat myStates : a.listEtat){
+                for(Transition transition : a.listTransition){
+                    sources.add(transition.etatSource);
+                }
+            }
+            for(Etat myStates : a.listEtat){
+                if(!sources.contains(myStates) && !myStates.isLast){
+                    retour = false;
+                    System.out.println("Automate \""+a.nom+ "\":"+myStates.nom +" problème état puit.");
+                }
+
+                for(Automate ss_aut : myStates.sousAutomates) {
+                    boolean tmp = (boolean) visit(ss_aut, "puits");
+                    if (retour) retour = tmp;
+                }
+            }
+
+            return retour;
+        }
 
         if(cas.equals("validAut")){
             boolean etatNonInitialEstCibleDUneTransition = true;
             boolean uniciteAutCourant = true;
             boolean determinisme = true;
             boolean oneInitialState = true;
+            boolean etatPuit = true;
 
             uniciteAutCourant= (boolean) visit(a,"unicité");
             determinisme = (boolean) visit(a, "determinisme");
             oneInitialState = (boolean) visit(a, "initial");
             etatNonInitialEstCibleDUneTransition = (boolean) visit(a, "target_of_transition");
+            etatPuit = (boolean) visit( a, "puits");
 
             return uniciteAutCourant && determinisme && oneInitialState && etatNonInitialEstCibleDUneTransition;
         }

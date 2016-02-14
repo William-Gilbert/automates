@@ -8,5 +8,9 @@ public class Label{
         libelle = s;
     }
 
+    public String toString(){
+        return libelle;
+    }
+
 
 }
