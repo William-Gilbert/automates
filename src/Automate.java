@@ -23,6 +23,10 @@ public class Automate implements VisitAccept {
     }
 
     public boolean ajouterTransition(Transition t){
+        /* Lorsqu'on ajoute une transition à l'automate, on déclenche un événement qui va entrainer l'éxécution de l'automate
+        avec le visiteur VisitorExecuteAutomate
+         */
+        t.notif();
         return t != null && listTransition.add(t);
     }
 
