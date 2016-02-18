@@ -80,7 +80,7 @@ public class VisitorValidateAutomate extends Visitor{
             return retour;
         }
 
-        if(cas.equals("validAut")){
+        if(cas.equals("entryPoint")){
             boolean etatNonInitialEstCibleDUneTransition = true;
             boolean uniciteAutCourant = true;
             boolean determinisme = true;
