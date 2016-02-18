@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * Created by zoom3 on 02/02/2016.
  */
@@ -34,10 +36,10 @@ public class Application {
         g1f2.ajouterSousAutomate(premier_sosu_automate_du_deuxieme_filsEtat_de_root);
         premier_sosu_automate_du_deuxieme_filsEtat_de_root.ajouterEtat(g2f2);
 
-        automate_contenant_root.etatCourant = automate_contenant_root.listEtat.get(0);
-        premier_sous_automate_de_root.etatCourant = premier_sous_automate_de_root.listEtat.get(0);
-        premier_sous_automate_du_premier_filsEtat_de_root.etatCourant = premier_sous_automate_du_premier_filsEtat_de_root.listEtat.get(0);
-        premier_sosu_automate_du_deuxieme_filsEtat_de_root.etatCourant = premier_sosu_automate_du_deuxieme_filsEtat_de_root.listEtat.get(0);
+//        automate_contenant_root.etatCourant = automate_contenant_root.listEtat.get(0);
+//        premier_sous_automate_de_root.etatCourant = premier_sous_automate_de_root.listEtat.get(0);
+//        premier_sous_automate_du_premier_filsEtat_de_root.etatCourant = premier_sous_automate_du_premier_filsEtat_de_root.listEtat.get(0);
+//        premier_sosu_automate_du_deuxieme_filsEtat_de_root.etatCourant = premier_sosu_automate_du_deuxieme_filsEtat_de_root.listEtat.get(0);
 
 
         /* Création de transition et ajout aux automates */
@@ -49,13 +51,14 @@ public class Application {
         t1.addObserver(transitionObserver);
         t2.addObserver(transitionObserver);
         t3.addObserver(transitionObserver);
+
         premier_sous_automate_de_root.ajouterTransition(t1);
         premier_sous_automate_de_root.ajouterTransition(t2);
         automate_contenant_root.ajouterTransition(t3);
 
         /*String r = automate_contenant_root.toString();
         System.out.print(r);*/
-
+        System.out.println(automate_contenant_root.toString());
         if((boolean) automate_contenant_root.accepter(new VisitorValidateAutomate())){
             System.out.println("Automates et ses sous automates valides.");
         }else{

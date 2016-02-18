@@ -6,19 +6,28 @@ public class VisitorExectueAutomate implements Visiteur {
 
     @Override
     public Object visit(Automate a, String cas) {
-        if(cas.equals("execute")){
-
+        if(cas.equals("initial")){
+            for(Etat e : a.listEtat){
+                if((boolean)visit(e,"initial")){
+                    return e;
+                }
+            }
         }
         return null;
     }
 
     @Override
     public Object visit(Etat e, String cas) {
+        if(cas.equals("initial")){
+            return e.isInitial;
+        }
         return null;
     }
 
     @Override
     public Object visit(Transition t, String cas) {
+        Etat init = (Etat)visit(t.etatSource.source,"initial");
+
         return null;
     }
 

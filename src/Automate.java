@@ -18,6 +18,9 @@ public class Automate implements VisitAccept {
     }
 
     public boolean ajouterEtat(Etat e) {
+        if(e.isInitial){
+            etatCourant = e;
+        }
         return e != null && listEtat.add(e);
 
     }
