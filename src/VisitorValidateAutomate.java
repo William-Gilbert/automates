@@ -5,7 +5,7 @@ import java.util.HashSet;
  * Cette classe définit le corps des méthodes de visit
  */
 
-public class VisitorValidateAutomate implements Visiteur{
+public class VisitorValidateAutomate extends Visitor{
 
     @Override
     public Object visit(Automate a, String cas) {

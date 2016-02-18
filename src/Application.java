@@ -59,8 +59,8 @@ public class Application {
         /*String r = automate_contenant_root.toString();
         System.out.print(r);*/
         System.out.println(automate_contenant_root.toString());
-        VisitorFactoryA vfA = new VisitorFactoryA();
-        VisitorValidateAutomate visitor = vfA.createVisitor();
+        VisitorValidateFactory vvf = new VisitorValidateFactory();
+        VisitorValidateAutomate visitor = vvf.createVisitor();
         if((boolean) automate_contenant_root.accepter(visitor)){
             System.out.println("Automates et ses sous automates valides.");
         }else{

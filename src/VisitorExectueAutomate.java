@@ -1,7 +1,7 @@
 /**
  * Created by william on 14/02/2016.
  */
-public class VisitorExectueAutomate implements Visiteur {
+public class VisitorExectueAutomate extends Visitor {
 
 
     @Override
