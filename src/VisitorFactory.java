@@ -1,7 +1,15 @@
 /**
- * Created by coren_000 on 18/02/2016.
+ * La fabrique de Visiteur
+ *
+ * @author Gilbert William, Tournoux Corentin
+ * @version 1.0
  */
 public abstract class VisitorFactory {
+    /**
+     * Getter sur le visiteur de la fabrique.
+     * @return
+     *  Le visiteur créé avec la fabrique.
+     */
     public Visitor getVisitor(){
         return createVisitor();
     }

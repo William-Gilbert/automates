@@ -2,14 +2,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Cette classe définit le corps des méthodes de visit
+ * Visiteur validant un automate ou non.
+ *
+ * @author Gilbert William, Tournoux Corentin
+ * @version 1.0
  */
 
 public class VisitorValidateAutomate extends Visitor{
 
+    /**
+     * @see Visiteur#visit(Automate, String)
+     */
     @Override
     public Object visit(Automate a, String cas) {
         if(cas.equals("unicité")){
+            // vérifie l'unicité de l'automate courant
             boolean retour = true;
             retour = (boolean) visit(a.etatCourant, "unicité"); // unicité des sous états
             for(Etat myStates : a.listEtat){
@@ -21,6 +28,7 @@ public class VisitorValidateAutomate extends Visitor{
             return retour;
         }
         if(cas.equals("determinisme")){
+            // vérifie le déterminisme de l'automate courant
             boolean retour = true;
             retour = (boolean) visit(a.etatCourant, "determinisme");
             for(Etat myStates : a.listEtat){
@@ -32,6 +40,7 @@ public class VisitorValidateAutomate extends Visitor{
             return retour;
         }
         if(cas.equals("initial")){
+            // vérifie qu'il n'y a qu'un seul état initial dans l'automate courant
             boolean retour = true;
             retour = (boolean) visit(a.etatCourant, "initial");
             for(Etat myStates : a.listEtat){
@@ -43,6 +52,7 @@ public class VisitorValidateAutomate extends Visitor{
             return retour;
         }
         if(cas.equals("target_of_transition")){
+            // vérifie que chaque état non initial est cible d'une transition
             boolean retour = true;
             for(Etat myStates : a.listEtat){
                 if(!myStates.isInitial){
@@ -58,6 +68,7 @@ public class VisitorValidateAutomate extends Visitor{
             return retour;
         }
         if (cas.equals("puits")){
+            // vérifie que chaque état puit est bien un état final
             boolean retour = true;
             ArrayList<Etat> sources = new ArrayList<Etat>(a.listTransition.size());
             for(Etat myStates : a.listEtat){
@@ -81,6 +92,7 @@ public class VisitorValidateAutomate extends Visitor{
         }
 
         if(cas.equals("entryPoint")){
+            // point d'entré pour valider un automate
             boolean etatNonInitialEstCibleDUneTransition = true;
             boolean uniciteAutCourant = true;
             boolean determinisme = true;
@@ -93,18 +105,21 @@ public class VisitorValidateAutomate extends Visitor{
             etatNonInitialEstCibleDUneTransition = (boolean) visit(a, "target_of_transition");
             etatPuit = (boolean) visit( a, "puits");
 
-            return uniciteAutCourant && determinisme && oneInitialState && etatNonInitialEstCibleDUneTransition;
+            return uniciteAutCourant && determinisme
+                    && oneInitialState && etatNonInitialEstCibleDUneTransition && etatPuit;
         }
         return null;
 
     }
 
+    /**
+     * @see Visiteur#visit(Etat, String)
+     */
     @Override
     public Object visit(Etat e, String cas) {
         if(cas.equals("unicité")){
+            // vérifie que chaque état a un nom unique dans l'automate
             boolean retour=true;
-            // Vérifie que le nom de l'état passé en paramètre est unique parmis les autres états de son automate
-            // Vérifie l'unicité des sous automates
             for (Etat stateOfMyAutomate : e.source.listEtat) {
                 if (stateOfMyAutomate != e && stateOfMyAutomate.nom.equals(e.nom))
                 {
@@ -116,6 +131,7 @@ public class VisitorValidateAutomate extends Visitor{
         }
 
         if(cas.equals("determinisme")){
+            // vérifie le déterminisme
             boolean retour = true;
             int countOfTransition = 0;
             HashSet<String> labelOfTransitions = new HashSet<String>();
@@ -138,6 +154,7 @@ public class VisitorValidateAutomate extends Visitor{
         }
 
         if(cas.equals("initial")){
+            // vérifie qu'il n'y a qu'un seul état initial dans l'automate de l'état
             int compteur = 0;
             for(Etat stateOfMyAut : e.source.listEtat){
                 if(stateOfMyAut.isInitial) compteur++;
@@ -150,9 +167,8 @@ public class VisitorValidateAutomate extends Visitor{
         }
 
         if(cas.equals("target_of_transition")){
-            // Renvoie true si 'état courant est la cible d'une transition de son automate
-            for(Transition t : e.source.listTransition)
-            {
+            // vérifie que chaque état non initial est cible d'une transition
+            for(Transition t : e.source.listTransition){
                 if(t.etatCible == e){
                     return true;
                 }
@@ -160,28 +176,23 @@ public class VisitorValidateAutomate extends Visitor{
             System.out.println("Automate \""+e.source.nom+ "\":L'état \""+e.nom+"\" n'est cible d'aucune transition.");
             return false;
         }
-
-
-
-
-
-
         return e.getNom();
     }
 
+    /**
+     * @see Visiteur#visit(Transition, String)
+     */
     @Override
     public Object visit(Transition t, String cas) {
-        if(cas.equals("route")){
-            visit(t.etiquette, "route");
-        }
-        return visit(t.etiquette, "display");
+
+        return visit(t.etiquette, "");
     }
 
+    /**
+     * @see Visiteur#visit(Label, String)
+     */
     @Override
     public Object visit(Label l, String cas) {
-        if(cas.equals("route")){
-
-        }
         return l.libelle;
     }
 

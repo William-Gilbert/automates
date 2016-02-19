@@ -1,12 +1,22 @@
 /**
- * Created by coren_000 on 18/02/2016.
+ * Singleton pour n'avoir qu'un seul visiteur de chaque type.
+ *
+ * @author Gilbert William, Tournoux Corentin
+ * @version 1.0
  */
 public class VisitorExecuteSingle {
-    private static final VisitorExectueAutomate INST = new VisitorExectueAutomate();
+    private static final VisitorExecuteAutomate INST = new VisitorExecuteAutomate();
 
+    /**
+     * Constructeur privé pour ne pas pouvoir instancier le singleton.
+     */
     private VisitorExecuteSingle(){}
 
-    public static VisitorExectueAutomate getInstance(){
+    /**
+     * @return
+     *      Le visiteur éxecutant un automate.
+     */
+    public static VisitorExecuteAutomate getInstance(){
         return INST;
     }
 }
