@@ -17,11 +17,11 @@ public class AutomateObserver implements Observer {
     public void update(Observable o, Object arg) {
 
         Transition t = (Transition)arg;
-        /* Si l'événement qui a appelé la méthode est du type de la transition associé, on déclenche l'exécution */
+        /* Si l'ï¿½vï¿½nement qui a appelï¿½ la mï¿½thode est du type de la transition associï¿½, on dï¿½clenche l'exï¿½cution */
         for(Automate a : automatesConcernedByObserver){
             if(a == t.etatSource.source){
                 VisitorFactoryExecute vfe = new VisitorFactoryExecute();
-                VisitorExectueAutomate visitor = vfe.createVisitor();
+                VisitorExecuteAutomate visitor = vfe.createVisitor();
                 t.accepter(visitor);
             }
         }

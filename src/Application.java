@@ -65,14 +65,30 @@ public class Application {
 
         /*String r = automate_contenant_root.toString();
         System.out.print(r);*/
+        // Cas valide
         System.out.println(automate_contenant_root.toString());
+        System.out.println("Cas valide :");
         Visitor visitor = new VisitorValidateAutomate();
         if((boolean) automate_contenant_root.accepter(visitor)){
             System.out.println("Automates et ses sous automates valides.");
         }else{
-            System.out.println("Automates OU un de ses sous automates invalides.");
+            System.out.println("L'automate OU l'un de ses sous automates est invalide.");
+        }
+        // Cas non-valide
+        System.out.println("\n\nCas non-valide : ");
+        t2.etiquette.libelle="a";
+        root2.nom="root";
+        root2.isInitial=true;
+        t3.etatCible=root;
+        root2.isLast=false;
+        if((boolean) automate_contenant_root.accepter(visitor)){
+            System.out.println("Automates et ses sous automates valides.");
+        }else{
+            System.out.println("L'automate OU l'un de ses sous automates est invalide.");
         }
 
+        // visiteur avec évenement
+        System.out.println("\n\nVisteur avec évenement : ");
        transitBy(t1);
        transitBy(t4);
        transitBy(t2);
