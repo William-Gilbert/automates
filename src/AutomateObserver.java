@@ -3,7 +3,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Created by william on 14/02/2016.
+ * Visiteur validant un automate ou non.
+ *
+ * @author Gilbert William, Tournoux Corentin
+ * @version 1.0
  */
 public class AutomateObserver implements Observer {
 
